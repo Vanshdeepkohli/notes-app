@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <item android:id="@+id/login"
+        android:title="Login with Google"
+        android:icon="@drawable/google"
+        />
+
+    <item android:title="Sync with cloud"
+        android:id="@+id/sync"
+        android:icon="@drawable/sync"
+        />
+
+    <item android:title="Log out"
+        android:icon="@drawable/log_out"
+        android:id="@+id/logOut"
+        />
+
+</menu>

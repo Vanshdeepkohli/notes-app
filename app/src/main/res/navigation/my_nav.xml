@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_nav"
+    app:startDestination="@id/viewAllNotesFragment">
+
+    <fragment
+        android:id="@+id/viewAllNotesFragment"
+        android:name="com.example.notes.Fragments.ViewAllNotesFragment"
+        android:label="Notes"
+        tools:layout="@layout/fragment_view_all_notes" >
+        <action
+            android:id="@+id/action_viewAllNotesFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+        <action
+            android:id="@+id/action_viewAllNotesFragment_to_editNoteFragment"
+            app:destination="@id/editNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.example.notes.Fragments.CreateNoteFragment"
+        android:label="New Note"
+        tools:layout="@layout/fragment_create_note" >
+        <action
+            android:id="@+id/action_createNoteFragment_to_viewAllNotesFragment"
+            app:destination="@id/viewAllNotesFragment"
+            app:popUpTo="@id/viewAllNotesFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editNoteFragment"
+        android:name="com.example.notes.Fragments.EditNoteFragment"
+        android:label="Edit Note"
+        tools:layout="@layout/fragment_edit_note" >
+        <action
+            android:id="@+id/action_editNoteFragment_to_viewAllNotesFragment"
+            app:destination="@id/viewAllNotesFragment"
+            app:popUpTo="@id/viewAllNotesFragment" />
+        <argument
+            android:name="currentNote"
+            app:argType="com.example.notes.Database.Note" />
+    </fragment>
+</navigation>

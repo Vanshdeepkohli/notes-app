@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:title=""
+        android:icon="@drawable/search"
+        app:showAsAction="always"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        />
+
+    <item
+        android:id="@+id/linear"
+        android:title="List"
+        />
+    <item
+        android:id="@+id/grid"
+        android:title="Grid"
+        />
+
+    <item
+        android:id="@+id/deleteIcon"
+        android:title="delete"
+        android:icon="@drawable/delete"
+        app:showAsAction="always"
+        android:iconTint="@color/white"
+        android:visible="false"
+        />
+
+</menu>
