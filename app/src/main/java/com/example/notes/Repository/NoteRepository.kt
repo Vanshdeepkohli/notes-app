@@ -15,4 +15,8 @@ class NoteRepository(private val userDao: NoteDao) {
     suspend fun deleteNote(note: Note) = userDao.deleteNote(note)
 
     suspend fun updateNote(note: Note) = userDao.updateNote(note)
+
+    suspend fun updateIsSelected(id:Int, selected: Int) = userDao.updateIsSelected(id,selected)
+
+    suspend fun deleteAt(id: Int)  = userDao.deleteAt(id)
 }

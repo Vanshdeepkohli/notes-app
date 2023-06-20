@@ -68,7 +68,7 @@ class CreateNoteFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentDate = LocalDateTime.now().format(formatter)
 
-        viewModel.insertNote(Note(null,binding.title.text.toString(),binding.content.text.toString(),currentDate))
+        viewModel.insertNote(Note(null,binding.title.text.toString(),binding.content.text.toString(),currentDate,0))
 
         Toast.makeText(context,"Saved!", Toast.LENGTH_SHORT).show()
 

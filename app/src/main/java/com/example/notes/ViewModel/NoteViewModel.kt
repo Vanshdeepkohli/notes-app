@@ -35,5 +35,17 @@ class NoteViewModel(private val userRepository: NoteRepository) : ViewModel() {
         }
     }
 
+    fun updateIsSelected(id:Int, selected:Int){
+        viewModelScope.launch {
+            userRepository.updateIsSelected(id,selected)
+        }
+    }
+
+    fun deleteAt(id: Int){
+        viewModelScope.launch {
+            userRepository.deleteAt(id)
+        }
+    }
+
 
 }

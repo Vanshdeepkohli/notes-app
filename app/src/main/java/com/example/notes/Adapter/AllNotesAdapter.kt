@@ -1,9 +1,14 @@
+import android.opengl.Visibility
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.Database.Note
+import com.example.notes.Fragments.ViewAllNotesFragment
 import com.example.notes.Fragments.ViewAllNotesFragmentDirections
 import com.example.notes.databinding.NoteItemBinding
 
@@ -13,8 +18,7 @@ class AllNotesAdapter(
     private val onLongClickListener: onItemLongClick
 ) : RecyclerView.Adapter<AllNotesAdapter.MyViewHolder>() {
 
-    private val selectedItems = mutableSetOf<Int>()
-    private var firstItemSelected = false
+    private val selectedItems = mutableSetOf<Note>()
 
     inner class MyViewHolder(val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener, View.OnLongClickListener {
@@ -25,64 +29,40 @@ class AllNotesAdapter(
         }
 
         override fun onClick(p0: View?) {
+            Log.e("@@@@","inside OnClick block")
             val position = adapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                if (selectedItems.isNotEmpty()) {
-                    toggleSelection(position)
-                } else {
-                    onClickListener.onItemClickListener(position)
+            if(position != RecyclerView.NO_POSITION){
+                if (selectedItems.isEmpty()) {
+                    val action = ViewAllNotesFragmentDirections.actionViewAllNotesFragmentToEditNoteFragment(list[position])
+                    Navigation.findNavController(binding.root).navigate(action)
+                }else{
+                    Log.e("@@@@","inside onClick Else block")
+                    onClickListener.onItemClickListener(list[position])
+                    selectedItems.add(list[position])
                 }
             }
         }
 
         override fun onLongClick(p0: View?): Boolean {
-            val position = adapterPosition
-            if (position != RecyclerView.NO_POSITION) {
-                onLongClickListener.onItemLongClickListener(position)
-                return true
+            Log.e("@@@@","inside onLongClick block")
+            if(selectedItems.isEmpty()){
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    selectedItems.add(list[position])
+                    onLongClickListener.onItemLongClickListener(list[position])
+                    return true
+                }
             }
             return false
         }
 
-        private var onSelectionChangedListener: OnSelectionChangedListener? = null
-
-        fun setOnSelectionChangedListener(listener: OnSelectionChangedListener) {
-            onSelectionChangedListener = listener
-        }
-    }
-
-     fun toggleSelection(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
-        } else {
-            selectedItems.add(position)
-        }
-        notifyItemChanged(position)
-
-        if (selectedItems.isEmpty()) {
-            onSelectionCleared()
-        }
     }
 
 
-
-    private fun onSelectionCleared() {
-        selectedItems.clear()
-        firstItemSelected = false
-        // Notify the fragment to update the menu visibility
-        onSelectionChangedListener?.onSelectionChanged(false)
-    }
 
     fun clearSelection() {
         selectedItems.clear()
-        firstItemSelected = false
         notifyDataSetChanged()
-    }
-
-    private var onSelectionChangedListener: OnSelectionChangedListener? = null
-
-    fun setOnSelectionChangedListener(listener: OnSelectionChangedListener) {
-        onSelectionChangedListener = listener
     }
 
 
@@ -98,76 +78,51 @@ class AllNotesAdapter(
 
     override fun getItemCount() = list.size
 
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+
+
         val note = list[position]
+
+        if(note.isSelected == 0){
+            holder.binding.checkButton.visibility = View.GONE
+        }else{
+            holder.binding.checkButton.visibility = View.VISIBLE
+        }
+
         if (note.title.isEmpty()) {
             holder.binding.title.text = note.content
         } else {
             holder.binding.title.text = note.title
             holder.binding.content.text = note.content
         }
+
         holder.binding.date.text = note.date
 
-        holder.binding.root.setOnClickListener {
-            if (selectedItems.isEmpty()) {
-                val action =
-                    ViewAllNotesFragmentDirections.actionViewAllNotesFragmentToEditNoteFragment(
-                        note
-                    )
-                Navigation.findNavController(it).navigate(action)
-            }
-        }
 
-        if (selectedItems.contains(position)) {
-            holder.binding.checkButton.visibility = View.VISIBLE
-        } else {
-            holder.binding.checkButton.visibility = View.INVISIBLE
-        }
-    }
-    fun getData(): List<Note> {
-        return list
     }
 
-    fun selectItem(position: Int) {
-        if (!selectedItems.contains(position)) {
-            selectedItems.add(position)
-            notifyItemChanged(position)
-            if (selectedItems.size >= 1) {
-                // First item selected, notify the fragment to update the menu visibility
-                onSelectionChangedListener?.onSelectionChanged(true)
-            }
-        }
+    fun selectItem(note:Note) {
+        selectedItems.add(note)
+        notifyDataSetChanged()
     }
 
-    fun getSelectedItems(): MutableSet<Int> {
-        return selectedItems
-    }
 
     fun setData(newData: List<Note>) {
         list = newData
         notifyDataSetChanged()
     }
-    fun deselectItem(position: Int) {
-        if (selectedItems.contains(position)) {
-            selectedItems.remove(position)
-            notifyItemChanged(position)
-            if (selectedItems.isEmpty()) {
-                onSelectionChangedListener?.onSelectionChanged(false)
-            }
-        }
-    }
-    fun isSelected(position: Int): Boolean {
-        return selectedItems.contains(position)
+    fun deselectItem(note:Note) {
+        selectedItems.remove(note)
+        notifyDataSetChanged()
     }
 
     interface onItemClick {
-        fun onItemClickListener(position: Int)
+        fun onItemClickListener(note: Note)
     }
 
     interface onItemLongClick {
-        fun onItemLongClickListener(position: Int): Boolean
+        fun onItemLongClickListener(note: Note): Boolean
     }
-    interface OnSelectionChangedListener {
-        fun onSelectionChanged(isSelected: Boolean)
-    }
+
 }

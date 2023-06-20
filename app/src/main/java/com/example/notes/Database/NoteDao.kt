@@ -25,4 +25,10 @@ interface NoteDao {
 
     @Update()
     suspend fun updateNote(note: Note)
+
+    @Query("UPDATE Note SET isSelected = :selected WHERE id =:id")
+    suspend fun updateIsSelected(id:Int, selected : Int)
+
+    @Query("DELETE FROM Note WHERE id = :id")
+    suspend fun deleteAt(id: Int)
 }

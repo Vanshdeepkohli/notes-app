@@ -86,6 +86,7 @@
                 android:src="@drawable/down_arrow" />
         </LinearLayout>
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvViewAllNotes"
             android:layout_width="match_parent"
@@ -117,6 +118,17 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/brown"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/nav_menu" >
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:id="@+id/progressBar"
+            android:indeterminate="false"
+            app:indicatorColor="#FF0000"
+            />
+
+    </com.google.android.material.navigation.NavigationView>
+
 
 </androidx.drawerlayout.widget.DrawerLayout>

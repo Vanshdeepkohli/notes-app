@@ -73,7 +73,7 @@ class EditNoteFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentDate = LocalDateTime.now().format(formatter)
 
-        viewModel.updateNote(Note(currentNote.currentNote.id,binding.title.text.toString(),binding.content.text.toString(),currentDate))
+        viewModel.updateNote(Note(currentNote.currentNote.id,binding.title.text.toString(),binding.content.text.toString(),currentDate,0))
 
         Toast.makeText(context,"Updated!", Toast.LENGTH_SHORT).show()
 

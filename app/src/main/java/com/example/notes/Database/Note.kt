@@ -15,8 +15,11 @@ data class Note(
     @ColumnInfo("content")
     val content: String,
     @ColumnInfo("date")
-    val date: String
+    val date: String,
+    @ColumnInfo("isSelected")
+    var isSelected : Int = 0
 
 ) : Parcelable {
-    constructor() : this(0,"dummy text","dummy text","dummy text")
+    constructor() : this(0,"dummy text","dummy text","dummy text",0)
+
 }
