@@ -18,7 +18,7 @@ class AllNotesAdapter(
     private val onLongClickListener: onItemLongClick
 ) : RecyclerView.Adapter<AllNotesAdapter.MyViewHolder>() {
 
-    private val selectedItems = mutableSetOf<Note>()
+     val selectedItems = mutableSetOf<Note>()
 
     inner class MyViewHolder(val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener, View.OnLongClickListener {
