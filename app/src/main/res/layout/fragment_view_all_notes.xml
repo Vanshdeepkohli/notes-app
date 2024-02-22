@@ -33,9 +33,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30sp"
                     android:fontFamily="@font/roboto"
                     android:gravity="top|center"
-                    android:layout_marginTop="30sp"
                     android:text="97 notes"
                     app:layout_collapseMode="parallax" />
 
@@ -58,41 +58,39 @@
         </com.google.android.material.appbar.AppBarLayout>
 
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginBottom="20sp"
             android:elevation="10dp"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-          >
+            android:orientation="horizontal"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/searchView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:elevation="5dp"
+                android:layout_marginHorizontal="10sp"
                 android:layout_marginBottom="10sp"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins_semibold"
-                app:iconifiedByDefault="false"
-                android:visibility="invisible"
-                android:layout_marginHorizontal="10sp"
-                android:nestedScrollingEnabled="false"
                 android:background="@drawable/searchview_background"
+                android:elevation="5dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:nestedScrollingEnabled="false"
+                android:visibility="invisible"
+                app:iconifiedByDefault="false"
                 app:queryHint="Search" />
 
             <TextView
                 android:id="@+id/dateModifier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginEnd="5sp"
                 android:background="?attr/selectableItemBackground"
                 android:drawableStart="@drawable/filter"
                 android:drawablePadding="2sp"
                 android:fontFamily="@font/roboto"
-                android:layout_gravity="end"
                 android:text="Date modified"
                 android:textSize="12sp" />
 
@@ -110,8 +108,8 @@
             android:id="@+id/rvViewAllNotes"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5sp"
             android:layout_marginTop="20sp"
+            android:padding="5sp"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -121,12 +119,12 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="16sp"
             android:backgroundTint="#99DD7F66"
+            android:contentDescription="fabIcon"
             android:elevation="10dp"
             android:outlineAmbientShadowColor="@color/brown"
             android:outlineSpotShadowColor="@color/brown"
             android:src="@drawable/plus"
             app:fabSize="auto"
-            android:contentDescription="fabIcon"
             app:maxImageSize="35dp" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
@@ -139,15 +137,14 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/brown"
-        app:menu="@menu/nav_menu" >
+        app:menu="@menu/nav_menu">
 
         <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progressBar"
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:id="@+id/progressBar"
             android:indeterminate="false"
-            app:indicatorColor="#FF0000"
-            />
+            app:indicatorColor="#FF0000" />
 
     </com.google.android.material.navigation.NavigationView>
 

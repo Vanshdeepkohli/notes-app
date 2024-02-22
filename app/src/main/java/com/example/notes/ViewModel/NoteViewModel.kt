@@ -1,15 +1,11 @@
 package com.example.notes.ViewModel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.notes.Database.Note
 import com.example.notes.Repository.NoteRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class NoteViewModel(private val userRepository: NoteRepository) : ViewModel() {
 
@@ -17,13 +13,13 @@ class NoteViewModel(private val userRepository: NoteRepository) : ViewModel() {
 
     fun getNotesAsc(): LiveData<List<Note>> = userRepository.getNotesAsc()
 
-    fun insertNote(note: Note){
+    fun insertNote(note: Note) {
         viewModelScope.launch {
             userRepository.insertNote(note)
         }
     }
 
-    fun updateNote(note: Note){
+    fun updateNote(note: Note) {
         viewModelScope.launch {
             userRepository.updateNote(note)
         }
@@ -35,13 +31,13 @@ class NoteViewModel(private val userRepository: NoteRepository) : ViewModel() {
         }
     }
 
-    fun updateIsSelected(id:Int, selected:Int){
+    fun updateIsSelected(id: Int, selected: Int) {
         viewModelScope.launch {
-            userRepository.updateIsSelected(id,selected)
+            userRepository.updateIsSelected(id, selected)
         }
     }
 
-    fun deleteAt(id: Int){
+    fun deleteAt(id: Int) {
         viewModelScope.launch {
             userRepository.deleteAt(id)
         }

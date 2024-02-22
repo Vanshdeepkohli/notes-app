@@ -1,9 +1,9 @@
 package com.example.notes
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import androidx.appcompat.app.AppCompatActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +13,7 @@ class SplashScreen : AppCompatActivity() {
         Handler().postDelayed(Runnable {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
-        },1000)
+        }, 1000)
 
     }
 }

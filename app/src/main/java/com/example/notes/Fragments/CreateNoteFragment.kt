@@ -1,16 +1,13 @@
 package com.example.notes.Fragments
 
-import android.app.Application
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.notes.Database.Note
 import com.example.notes.Database.NoteDao
@@ -25,13 +22,12 @@ import java.time.format.DateTimeFormatter
 
 class CreateNoteFragment : Fragment() {
 
-    private var _binding : FragmentCreateNoteBinding? = null
+    private var _binding: FragmentCreateNoteBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var userDao : NoteDao
-    private lateinit var repository : NoteRepository
-    private lateinit var viewModel : NoteViewModel
-
+    private lateinit var userDao: NoteDao
+    private lateinit var repository: NoteRepository
+    private lateinit var viewModel: NoteViewModel
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -41,7 +37,7 @@ class CreateNoteFragment : Fragment() {
     ): View? {
         activity?.setActionBar(null)
         // Inflate the layout for this fragment
-        _binding = FragmentCreateNoteBinding.inflate(inflater,container,false)
+        _binding = FragmentCreateNoteBinding.inflate(inflater, container, false)
 
         userDao = NoteDatabase.getDatabase(this.requireContext()).getDao()
         repository = NoteRepository(userDao)
@@ -53,9 +49,9 @@ class CreateNoteFragment : Fragment() {
         }
 
         binding.save.setOnClickListener {
-            if(binding.title.text.toString() == "" && binding.content.text.toString() == ""){
-                Toast.makeText(context,"Enter something",Toast.LENGTH_SHORT).show()
-            }else{
+            if (binding.title.text.toString() == "" && binding.content.text.toString() == "") {
+                Toast.makeText(context, "Enter something", Toast.LENGTH_SHORT).show()
+            } else {
                 createNote()
             }
         }
@@ -68,9 +64,17 @@ class CreateNoteFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentDate = LocalDateTime.now().format(formatter)
 
-        viewModel.insertNote(Note(null,binding.title.text.toString(),binding.content.text.toString(),currentDate,0))
+        viewModel.insertNote(
+            Note(
+                null,
+                binding.title.text.toString(),
+                binding.content.text.toString(),
+                currentDate,
+                0
+            )
+        )
 
-        Toast.makeText(context,"Saved!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Saved!", Toast.LENGTH_SHORT).show()
 
         findNavController().navigate(R.id.action_createNoteFragment_to_viewAllNotesFragment)
         _binding = null

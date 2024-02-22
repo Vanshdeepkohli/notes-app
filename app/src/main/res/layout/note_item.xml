@@ -16,27 +16,26 @@
         android:padding="20sp">
 
         <Button
+            android:id="@+id/checkButton"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:id="@+id/checkButton"
-            android:background="@drawable/checkmark"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="5dp"
-            />
+            android:background="@drawable/checkmark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
             android:fontFamily="@font/roboto_bold"
             android:maxLines="1"
             android:textSize="24sp"
-            android:layout_marginRight="5dp"
+            app:layout_constraintEnd_toStartOf="@id/checkButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/checkButton"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/content"

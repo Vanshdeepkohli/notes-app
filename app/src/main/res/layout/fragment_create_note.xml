@@ -1,62 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.CreateNoteFragment">
 
 
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginStart="10sp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:src="@drawable/back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/back"
-            android:layout_width="wrap_content"
-            android:layout_height="?attr/actionBarSize"
-            android:src="@drawable/back"
-            android:background="@android:color/transparent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:elevation="2dp"
-            android:layout_marginStart="10sp"
-            />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="?attr/actionBarSize"
-            android:id="@+id/title"
-            android:hint="Title"
-            android:fontFamily="@font/roboto_bold"
-            android:textSize="20sp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/back"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="#ffffff"
-            android:layout_marginStart="15sp"
-            />
-
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginStart="15sp"
+        android:background="#ffffff"
+        android:fontFamily="@font/roboto_bold"
+        android:hint="Title"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/back"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:padding="8sp"
         android:id="@+id/contentLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:theme="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintBottom_toTopOf="@id/save"
         android:layout_marginTop="10sp"
-        android:elevation="8dp"
         android:layout_marginBottom="30sp"
-        >
+        android:elevation="8dp"
+        android:padding="8sp"
+        android:theme="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        app:layout_constraintBottom_toTopOf="@id/save"
+        app:layout_constraintTop_toBottomOf="@id/title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="16sp"
             android:fontFamily="@font/roboto"
             android:gravity="top"
-            />
+            android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -65,20 +59,19 @@
         android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="30sp"
         android:drawableLeft="@drawable/upload"
-        android:text="Save"
-        android:textSize="20sp"
         android:drawableTint="@color/white"
+        android:elevation="12dp"
         android:fontFamily="@font/roboto"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:paddingLeft="30sp"
         android:paddingRight="30sp"
-        android:layout_margin="30sp"
-        android:elevation="12dp"
         android:shadowColor="@color/black"
-        />
+        android:text="Save"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

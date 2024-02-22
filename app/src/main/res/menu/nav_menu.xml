@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/login"
-        android:title="Login with Google"
+    <item
+        android:id="@+id/login"
         android:icon="@drawable/google"
-        />
+        android:title="Login with Google" />
 
-    <item android:title="Sync with cloud"
+    <item
         android:id="@+id/sync"
         android:icon="@drawable/sync"
-        />
+        android:title="Sync with cloud" />
 
-    <item android:title="Log out"
-        android:icon="@drawable/log_out"
+    <item
         android:id="@+id/logOut"
-        />
+        android:icon="@drawable/log_out"
+        android:title="Log out" />
 
 </menu>

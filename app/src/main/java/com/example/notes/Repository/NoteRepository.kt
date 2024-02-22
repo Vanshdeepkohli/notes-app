@@ -6,9 +6,9 @@ import com.example.notes.Database.NoteDao
 
 class NoteRepository(private val userDao: NoteDao) {
 
-    fun getNotes() : LiveData<List<Note>> = userDao.getAllNotes()
+    fun getNotes(): LiveData<List<Note>> = userDao.getAllNotes()
 
-    fun getNotesAsc() : LiveData<List<Note>> = userDao.getAllNotesAsc()
+    fun getNotesAsc(): LiveData<List<Note>> = userDao.getAllNotesAsc()
 
     suspend fun insertNote(note: Note) = userDao.insertNote(note)
 
@@ -16,7 +16,7 @@ class NoteRepository(private val userDao: NoteDao) {
 
     suspend fun updateNote(note: Note) = userDao.updateNote(note)
 
-    suspend fun updateIsSelected(id:Int, selected: Int) = userDao.updateIsSelected(id,selected)
+    suspend fun updateIsSelected(id: Int, selected: Int) = userDao.updateIsSelected(id, selected)
 
-    suspend fun deleteAt(id: Int)  = userDao.deleteAt(id)
+    suspend fun deleteAt(id: Int) = userDao.deleteAt(id)
 }

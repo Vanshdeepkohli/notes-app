@@ -4,27 +4,23 @@
 
     <item
         android:id="@+id/search"
-        android:title=""
         android:icon="@drawable/search"
-        app:showAsAction="always"
-        />
+        android:title=""
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/linear"
-        android:title="List"
-        />
+        android:title="List" />
     <item
         android:id="@+id/grid"
-        android:title="Grid"
-        />
+        android:title="Grid" />
 
     <item
         android:id="@+id/deleteIcon"
-        android:title="delete"
         android:icon="@drawable/delete"
-        app:showAsAction="always"
         android:iconTint="@color/white"
+        android:title="delete"
         android:visible="false"
-        />
+        app:showAsAction="always" />
 
 </menu>

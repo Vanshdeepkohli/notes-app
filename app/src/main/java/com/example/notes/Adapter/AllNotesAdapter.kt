@@ -1,14 +1,10 @@
-import android.opengl.Visibility
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notes.Database.Note
-import com.example.notes.Fragments.ViewAllNotesFragment
 import com.example.notes.Fragments.ViewAllNotesFragmentDirections
 import com.example.notes.databinding.NoteItemBinding
 
@@ -18,7 +14,7 @@ class AllNotesAdapter(
     private val onLongClickListener: onItemLongClick
 ) : RecyclerView.Adapter<AllNotesAdapter.MyViewHolder>() {
 
-     val selectedItems = mutableSetOf<Note>()
+    val selectedItems = mutableSetOf<Note>()
 
     inner class MyViewHolder(val binding: NoteItemBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener, View.OnLongClickListener {
@@ -29,14 +25,17 @@ class AllNotesAdapter(
         }
 
         override fun onClick(p0: View?) {
-            Log.e("@@@@","inside OnClick block")
+            Log.e("@@@@", "inside OnClick block")
             val position = adapterPosition
-            if(position != RecyclerView.NO_POSITION){
+            if (position != RecyclerView.NO_POSITION) {
                 if (selectedItems.isEmpty()) {
-                    val action = ViewAllNotesFragmentDirections.actionViewAllNotesFragmentToEditNoteFragment(list[position])
+                    val action =
+                        ViewAllNotesFragmentDirections.actionViewAllNotesFragmentToEditNoteFragment(
+                            list[position]
+                        )
                     Navigation.findNavController(binding.root).navigate(action)
-                }else{
-                    Log.e("@@@@","inside onClick Else block")
+                } else {
+                    Log.e("@@@@", "inside onClick Else block")
                     onClickListener.onItemClickListener(list[position])
                     selectedItems.add(list[position])
                 }
@@ -44,8 +43,8 @@ class AllNotesAdapter(
         }
 
         override fun onLongClick(p0: View?): Boolean {
-            Log.e("@@@@","inside onLongClick block")
-            if(selectedItems.isEmpty()){
+            Log.e("@@@@", "inside onLongClick block")
+            if (selectedItems.isEmpty()) {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     selectedItems.add(list[position])
@@ -57,7 +56,6 @@ class AllNotesAdapter(
         }
 
     }
-
 
 
     fun clearSelection() {
@@ -84,9 +82,9 @@ class AllNotesAdapter(
 
         val note = list[position]
 
-        if(note.isSelected == 0){
+        if (note.isSelected == 0) {
             holder.binding.checkButton.visibility = View.GONE
-        }else{
+        } else {
             holder.binding.checkButton.visibility = View.VISIBLE
         }
 
@@ -102,7 +100,7 @@ class AllNotesAdapter(
 
     }
 
-    fun selectItem(note:Note) {
+    fun selectItem(note: Note) {
         selectedItems.add(note)
         notifyDataSetChanged()
     }
@@ -112,7 +110,8 @@ class AllNotesAdapter(
         list = newData
         notifyDataSetChanged()
     }
-    fun deselectItem(note:Note) {
+
+    fun deselectItem(note: Note) {
         selectedItems.remove(note)
         notifyDataSetChanged()
     }

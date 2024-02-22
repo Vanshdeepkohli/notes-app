@@ -2,14 +2,12 @@ package com.example.notes.Fragments
 
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.viewModelScope
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.notes.Database.Note
@@ -19,18 +17,17 @@ import com.example.notes.R
 import com.example.notes.Repository.NoteRepository
 import com.example.notes.ViewModel.NoteViewModel
 import com.example.notes.databinding.FragmentEditNoteBinding
-import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class EditNoteFragment : Fragment() {
 
-    private var _binding : FragmentEditNoteBinding? = null
-    private  val binding get() = _binding!!
+    private var _binding: FragmentEditNoteBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var userDao : NoteDao
-    private lateinit var repository : NoteRepository
-    private lateinit var viewModel : NoteViewModel
+    private lateinit var userDao: NoteDao
+    private lateinit var repository: NoteRepository
+    private lateinit var viewModel: NoteViewModel
 
     val currentNote by navArgs<EditNoteFragmentArgs>()
 
@@ -40,7 +37,7 @@ class EditNoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentEditNoteBinding.inflate(inflater,container,false)
+        _binding = FragmentEditNoteBinding.inflate(inflater, container, false)
 
         userDao = NoteDatabase.getDatabase(this.requireContext()).getDao()
         repository = NoteRepository(userDao)
@@ -68,14 +65,22 @@ class EditNoteFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun updateNote(note : Note){
+    private fun updateNote(note: Note) {
 
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
         val currentDate = LocalDateTime.now().format(formatter)
 
-        viewModel.updateNote(Note(currentNote.currentNote.id,binding.title.text.toString(),binding.content.text.toString(),currentDate,0))
+        viewModel.updateNote(
+            Note(
+                currentNote.currentNote.id,
+                binding.title.text.toString(),
+                binding.content.text.toString(),
+                currentDate,
+                0
+            )
+        )
 
-        Toast.makeText(context,"Updated!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Updated!", Toast.LENGTH_SHORT).show()
 
         findNavController().navigate(R.id.action_editNoteFragment_to_viewAllNotesFragment)
         _binding = null

@@ -1,7 +1,6 @@
 package com.example.notes.Database
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -10,12 +9,12 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 //@Database(entities = [Note::class], version = 1,  exportSchema = true)
 @Database(entities = [Note::class], version = 2, exportSchema = true)
-abstract class NoteDatabase : RoomDatabase(){
-    abstract fun getDao() : NoteDao
+abstract class NoteDatabase : RoomDatabase() {
+    abstract fun getDao(): NoteDao
 
     companion object {
 
-        private val migration_1_2 = object : Migration(1,2) {
+        private val migration_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE Note ADD COLUMN isSelected INTEGER")
             }

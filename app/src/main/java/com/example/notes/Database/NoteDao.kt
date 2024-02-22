@@ -12,10 +12,10 @@ import androidx.room.Update
 interface NoteDao {
 
     @Query("SELECT * FROM NOTE ORDER BY date desc")
-    fun getAllNotes() : LiveData<List<Note>>
+    fun getAllNotes(): LiveData<List<Note>>
 
     @Query("SELECT * FROM NOTE ORDER BY date asc")
-    fun getAllNotesAsc() : LiveData<List<Note>>
+    fun getAllNotesAsc(): LiveData<List<Note>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertNote(note: Note)
@@ -27,7 +27,7 @@ interface NoteDao {
     suspend fun updateNote(note: Note)
 
     @Query("UPDATE Note SET isSelected = :selected WHERE id =:id")
-    suspend fun updateIsSelected(id:Int, selected : Int)
+    suspend fun updateIsSelected(id: Int, selected: Int)
 
     @Query("DELETE FROM Note WHERE id = :id")
     suspend fun deleteAt(id: Int)

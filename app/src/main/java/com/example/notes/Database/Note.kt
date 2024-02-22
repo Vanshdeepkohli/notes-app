@@ -5,6 +5,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+
 @Parcelize()
 @Entity("Note")
 data class Note(
@@ -17,9 +18,9 @@ data class Note(
     @ColumnInfo("date")
     val date: String,
     @ColumnInfo("isSelected")
-    var isSelected : Int = 0
+    var isSelected: Int = 0
 
 ) : Parcelable {
-    constructor() : this(0,"dummy text","dummy text","dummy text",0)
+    constructor() : this(0, "dummy text", "dummy text", "dummy text", 0)
 
 }
